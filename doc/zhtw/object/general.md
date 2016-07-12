@@ -1,19 +1,19 @@
 ## 物件的使用和屬性
 
-在 Javascript 中全部都是物件，除了 [`null`](#core.undefined) 和 [`undefined`](#core.undefined)。
+在 Javascript 中，除了 [`null`](#core.undefined) 和 [`undefined`](#core.undefined)之外，任何的東西皆是物件。
 
     false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
-    
+
     function Foo(){}
     Foo.bar = 1;
     Foo.bar; // 1
 
-一個常見的誤解就是字面值（literal）不是物件。這是因為 JavaScript 編譯器的一個錯誤，它試圖把 *點操作符* 解析為浮點數的字面值的一部分。
+一個常見的誤解就是數字字面常數（number literal）不是物件。這是因為 JavaScript 編譯器的一個錯誤，它試圖把 *點操作符* 解析為浮點數字面常數的一部分。
 
     2.toString(); // 出錯： SyntaxError
 
-有很多變通方法可以讓數字的字面值看起來像物件。
+有很多的方法可以讓數字字面常數作用的像個物件。
 
     2..toString(); // 第二個點號可以正常解析
     2 .toString(); // 注意點號前面的空格
@@ -27,28 +27,28 @@ JavaScript 的物件可以作為 [*Hashmaps*][1]使用，主要用來保存命�
 
     var foo = {}; // 一個空的物件
 
-    // 一個新的物件，有值為 12 的自定義屬性 'test'
-    var bar = {test: 12}; 
+    // 一個新的物件，有一個值為 12 的自定義屬性 'test'
+    var bar = {test: 12};
 
 ### 訪問屬性
 
-有兩種方式來訪問物件的屬性，點操作或是中括號操作。
-    
+有兩種訪問物件屬性的方法，點操作或是中括號操作。
+
     var foo = {name: 'kitten'}
     foo.name; // kitten
     foo['name']; // kitten
-    
+
     var get = 'name';
     foo[get]; // kitten
-    
+
     foo.1234; // SyntaxError
     foo['1234']; // works
 
-兩種語法是相等的，唯一的差別是，使用中括號允許你動態的設定屬性，使用點操作不允許屬性為變數，否則會造成語法錯誤
+兩種語法幾乎是相等的，唯一的差別是，使用中括號允許你動態的設定屬性，使用點操作不允許屬性為變數，否則會造成語法錯誤
 
 ### 刪除屬性
 
-唯一刪除屬性的方式就是用 `delete` 操作符。設置屬性為 `undefined` 或是 `null` 只有刪除的屬性和值的關聯，沒有真的刪掉屬性
+唯一刪除屬性的方式就是用 `delete` 操作符。將屬性設置為 `undefined` 或是 `null` 只會移除屬性和值之間關聯，沒有真的刪掉掉該屬性的鍵(key)
 
     var obj = {
         bar: 1,
@@ -79,7 +79,6 @@ JavaScript 的物件可以作為 [*Hashmaps*][1]使用，主要用來保存命�
 物件的屬性名可以使用字符串或是普通的宣告。但是由於 JavaScript 編譯器存在一個錯誤設計。
 上面的兩種方式在 ECMAScript 5之前都會拋出 `SyntaxError` 的錯誤。
 
-這個錯誤的原因是 `delete` 是 JavaScript 語言的一個 *關鍵字* 因此為了在更低的版本能執行最好用 *string literal*
+這個錯誤的原因是 `delete` 是 JavaScript 語言的一個 *關鍵字* 因此為了在更低的版本能執行最好使用用 *string literal*
 
 [1]: http://en.wikipedia.org/wiki/Hashmap
-
